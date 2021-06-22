@@ -1,24 +1,25 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Config from '../../../config';
-import Utils from '../../utils/pageUtils';
-import style from './tags.module.less';
+
+import Utils from '@/utils/pageUtils';
+import gatsbyConfig from '@/config/gatsbyConfig';
+import * as styles from './tags.module.less';
 
 const TagCard = (props) => {
   const {
     img, name, description, color,
   } = props;
-  const tagPage = Config.pages.tag;
+  const tagPage = gatsbyConfig.pages.tag;
   return (
-    <Link className={style.tagCard} to={Utils.resolvePageUrl(tagPage, name)}>
-      <div className={style.tagCard}>
+    <Link className={styles.tagCard} to={Utils.resolvePageUrl(tagPage, name)}>
+      <div className={styles.tagCard}>
         <div
-          className={style.tagImg}
+          className={styles.tagImg}
           style={{
             backgroundImage: `url(${img})`,
           }}
         />
-        <div className={style.pd20px}>
+        <div className={styles.pd20px}>
           <div className="textCenter">
             <h4 style={{ color: `${color}` }}>
               #

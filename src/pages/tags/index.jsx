@@ -1,15 +1,14 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import {
-  Layout, Row, Col,
-} from 'antd';
+import { Layout, Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Header from '../../components/PageLayout/Header';
-import SEO from '../../components/Seo';
-import SidebarWrapper from '../../components/PageLayout/Sidebar';
-import TagCard from '../../components/TagCard';
-import Config from '../../../config';
+
+import Header from '@/components/PageLayout/Header';
+import SEO from '@/components/Seo';
+import SidebarWrapper from '@/components/PageLayout/Sidebar';
+import TagCard from '@/components/TagCard';
+import gatsbyConfig from '@/config/gatsbyConfig';
 
 const Tags = ({ data }) => {
   const { allFile: { edges } } = data;
@@ -19,8 +18,8 @@ const Tags = ({ data }) => {
   rawTags
     .filter((tag, index) => index === rawTags.indexOf(tag))
     .sort(); // Remove duplicates and sort values
-  // const tagPage = Config.pages.tag;
-  const tagData = Config.tags;
+  // const tagPage = gatsbyConfig.pages.tag;
+  const tagData = gatsbyConfig.tags;
   return (
     <Layout className="outerPadding">
       <Layout className="container">

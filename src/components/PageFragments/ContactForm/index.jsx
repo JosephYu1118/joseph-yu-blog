@@ -1,8 +1,9 @@
+import React from 'react';
 import {
   Col, Form, Input, Button, message,
 } from 'antd';
-import React from 'react';
-import Config from '../../../../config';
+
+import gatsbyConfig from '@/config/gatsbyConfig';
 
 const validateMessages = {
   required: 'This field is required!',
@@ -10,7 +11,8 @@ const validateMessages = {
     email: 'Not a valid email!',
   },
 };
-export default () => {
+
+const ContactForm = () => {
   const [form] = Form.useForm();
   const onFinish = (data) => {
     const formData = new FormData();
@@ -21,7 +23,7 @@ export default () => {
       }
     }
 
-    fetch(Config.contactFormUrl, { method: 'POST', body: formData })
+    fetch(gatsbyConfig.contactFormUrl, { method: 'POST', body: formData })
       .then(() => {
         message.success('Thank you for your kind response 🙂. Will get back to you.');
         form.resetFields();
@@ -51,3 +53,5 @@ export default () => {
     </Col>
   );
 };
+
+export default ContactForm;

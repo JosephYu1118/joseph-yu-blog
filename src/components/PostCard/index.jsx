@@ -1,24 +1,25 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'gatsby';
-import style from './postCard.module.less';
-import Utils from '../../utils/pageUtils';
+
+import Utils from '@/utils/pageUtils';
+import * as styles from './postCard.module.less';
 
 const PostCard = (props) => {
   const { data: { node: { frontmatter } } } = props;
 
   return (
-    <div className={style.postCard}>
+    <div className={styles.postCard}>
       <Link to={Utils.resolvePageUrl(frontmatter.path)}>
         <div
-          className={style.postCardImg}
+          className={styles.postCardImg}
           style={{
             backgroundImage: `url(${frontmatter ? frontmatter.cover.childImageSharp.fluid.src : ''})`,
           }}
         />
-        <div className={style.mrTp20}>
+        <div className={styles.mrTp20}>
           <p>
-            <span className={style.dateHolder}>{frontmatter ? moment(frontmatter.date).format('MMM Do YYYY') : ''}</span>
+            <span className={styles.dateHolder}>{frontmatter ? moment(frontmatter.date).format('MMM Do YYYY') : ''}</span>
           </p>
           <h3>{frontmatter ? frontmatter.title : ''}</h3>
           <p>{frontmatter ? frontmatter.excerpt : ''}</p>

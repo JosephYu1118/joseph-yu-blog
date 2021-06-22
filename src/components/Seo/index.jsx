@@ -1,11 +1,10 @@
-/* Vendor imports */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
-/* App imports */
-import Config from '../../../config';
-import Utils from '../../utils/pageUtils';
+
+import Utils from '@/utils/pageUtils';
+import gatsbyConfig from '@/config/gatsbyConfig';
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
@@ -38,19 +37,19 @@ function SEO({
           ? { name: 'keywords', content: keywords.join(', ') }
           : [];
         const pageUrl = Utils.resolvePageUrl(
-          Config.siteUrl,
-          Config.pathPrefix,
+          gatsbyConfig.siteUrl,
+          gatsbyConfig.pathPrefix,
           path,
         );
         const metaImageUrl = Utils.resolveUrl(
-          Config.siteUrl,
+          gatsbyConfig.siteUrl,
           imageUrl || data.file.childImageSharp.fixed.src,
         );
 
         return (
           <Helmet
             title={title} // Page title
-            titleTemplate={`%s | ${Config.siteTitle}`}
+            titleTemplate={`%s | ${gatsbyConfig.siteTitle}`}
             meta={
               [
                 { name: 'description', content: description }, // Page description
@@ -61,7 +60,7 @@ function SEO({
                 { property: 'og:description', content: description },
                 { property: 'og:image', content: metaImageUrl },
                 { property: 'og:image:alt', content: description },
-                { property: 'og:site_name', content: Config.siteTitle },
+                { property: 'og:site_name', content: gatsbyConfig.siteTitle },
                 { property: 'og:locale', content: lang || 'en_US' },
                 /* Twitter card */
                 { name: 'twitter:card', content: 'summary_large_image' },
@@ -69,8 +68,8 @@ function SEO({
                 { name: 'twitter:description', content: description },
                 { name: 'twitter:image', content: metaImageUrl },
                 { name: 'twitter:image:alt', content: description },
-                { name: 'twitter:site', content: Config.author },
-                { name: 'twitter:creator', content: Config.author },
+                { name: 'twitter:site', content: gatsbyConfig.author },
+                { name: 'twitter:creator', content: gatsbyConfig.author },
               ]
                 .concat(metaKeywords) // Keywords
                 .concat(meta || []) // Other provided metadata
@@ -85,8 +84,8 @@ function SEO({
                     rel: 'alternate',
                     hreflang: obj.hreflang,
                     href: Utils.resolvePageUrl(
-                      Config.siteUrl,
-                      Config.pathPrefix,
+                      gatsbyConfig.siteUrl,
+                      gatsbyConfig.pathPrefix,
                       obj.path,
                     ),
                   }))

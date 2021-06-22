@@ -1,7 +1,6 @@
-/* eslint-disable no-param-reassign */
-const Config = require('../../config');
+const gatsbyConfig = require('../config/gatsbyConfig');
 
-const Utils = {
+const pageUtils = {
   /**
    * Join provided url paths.
    * @param {...string} paths Provided paths. It doesn't matter if they have trailing slash.
@@ -9,14 +8,14 @@ const Utils = {
    */
   resolveUrl: (...paths) => paths.reduce((resolvedUrl, path) => {
     const urlPath = path.toString().trim();
-    if (urlPath) {
-      // eslint-disable-next-line no-param-reassign
-      resolvedUrl
-          += (resolvedUrl === '' ? '' : '/') + urlPath.replace(/^\/|\/$/g, '');
-    }
+    let modifiedResolvedUrl = resolvedUrl;
 
-    resolvedUrl = resolvedUrl[0] !== '/' ? `/${resolvedUrl}` : resolvedUrl;
-    return resolvedUrl;
+    if (urlPath) {
+      modifiedResolvedUrl += (modifiedResolvedUrl === '' ? '' : '/') + urlPath.replace(/^\/|\/$/g, '');
+    }
+    modifiedResolvedUrl = modifiedResolvedUrl[0] !== '/' ? `/${modifiedResolvedUrl}` : modifiedResolvedUrl;
+
+    return modifiedResolvedUrl;
   }, ''),
   /**
    * Resolve a page url adding a trailing slash.
@@ -25,7 +24,8 @@ const Utils = {
    * @return {string} Resolved url with trailing slash.
    */
   resolvePageUrl: (...path) => {
-    const resolvedUrl = Utils.resolveUrl(...path);
+    const resolvedUrl = pageUtils.resolveUrl(...path);
+
     return resolvedUrl;
   },
   /**
@@ -41,9 +41,11 @@ const Utils = {
     // Get the number of common tags with provided post.
     const getTagScore = (edge) => {
       let commonTags = 0;
+
       edge.node.frontmatter.tags.forEach((tag) => {
         commonTags += post.frontmatter.tags.indexOf(tag) !== -1 ? 1 : 0;
       });
+
       return commonTags;
     };
 
@@ -61,18 +63,14 @@ const Utils = {
    * translated post's paths as values.
    */
   getRelatedTranslations: (post, postList) => postList
-    .filter(({ node }) =>
     // Get posts in the same folder of provided post
-      // eslint-disable-next-line implicit-arrow-linebreak
-      (
-        node.fileAbsolutePath.split('/').slice(-2, -1)[0]
-          === post.fileAbsolutePath.split('/').slice(-2, -1)[0]
-      ))
+    .filter(({ node }) => node.fileAbsolutePath.split('/').slice(-2, -1)[0] === post.fileAbsolutePath.split('/').slice(-2, -1)[0])
     .map(({ node }) => {
       const lang = node.fileAbsolutePath.split('.').slice(-2, -1)[0];
+
       return {
-        hreflang: lang.slice(-5) !== 'index' ? lang : Config.defaultLanguage,
-        path: Utils.resolvePageUrl(node.frontmatter.path),
+        hreflang: lang.slice(-5) !== 'index' ? lang : gatsbyConfig.defaultLanguage,
+        path: pageUtils.resolvePageUrl(node.frontmatter.path),
       };
     }),
   /**
@@ -83,4 +81,4 @@ const Utils = {
   capitalize: (str) => str[0].toUpperCase() + str.slice(1),
 };
 
-module.exports = Utils;
+module.exports = pageUtils;

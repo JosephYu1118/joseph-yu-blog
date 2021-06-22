@@ -1,27 +1,27 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import { Layout } from 'antd';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
-import Header from '../../components/PageLayout/Header';
-import SidebarWrapper from '../../components/PageLayout/Sidebar';
-import SEO from '../../components/Seo';
-import Comment from '../../components/Comment';
-import Config from '../../../config';
-import Utils from '../../utils/pageUtils';
-
 import 'prismjs/themes/prism-solarizedlight.css';
+
+import Header from '@/components/PageLayout/Header';
+import SidebarWrapper from '@/components/PageLayout/Sidebar';
+import SEO from '@/components/Seo';
+import Comment from '@/components/Comment';
+import Utils from '@/utils/pageUtils';
+import gatsbyConfig from '@/config/gatsbyConfig';
 import './highlight-syntax.less';
-import style from './post.module.less';
+import * as styles from './post.module.less';
 
 const Post = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
   const {
-    title, cover: { childImageSharp: { fluid } }, excerpt, path,
+    title, excerpt, path,
   } = frontmatter;
 
   const canonicalUrl = Utils.resolvePageUrl(
-    Config.siteUrl,
-    Config.pathPrefix,
+    gatsbyConfig.siteUrl,
+    gatsbyConfig.pathPrefix,
     path,
   );
   return (
@@ -37,10 +37,11 @@ const Post = ({ data }) => {
         <SidebarWrapper>
           <div className="marginTopTitle">
             <h1>{title}</h1>
-            <div className={style.bannerImgContainer}>
-              <Img className={style.bannerImg} fluid={fluid} title={excerpt} alt={title} />
+            <div className={styles.bannerImgContainer}>
+              {/* <StaticImage className={styles.bannerImg}
+              src={fluid} title={excerpt} alt={title} /> */}
             </div>
-            <article className={style.blogArticle} dangerouslySetInnerHTML={{ __html: html }} />
+            <article className={styles.blogArticle} dangerouslySetInnerHTML={{ __html: html }} />
             <Comment pageCanonicalUrl={canonicalUrl} pageId={title} />
           </div>
         </SidebarWrapper>

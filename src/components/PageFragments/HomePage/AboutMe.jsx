@@ -1,9 +1,10 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import { Row, Col } from 'antd';
-import AboutTile from '../../AbouTile';
-import { stripTags, domHtml } from '../../../utils/stripTags';
 
-import SEO from '../../Seo';
+import AboutTile from '@/components/AbouTile';
+import SEO from '@/components/Seo';
+import { stripTags, domHtml } from '@/utils/stripTags';
 
 const pageText = {
   paraOne: `Hello !! My name is Rolwin Reevan Monteiro. I'm a full stack web developer who is

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Layout, Row, Col } from 'antd';
-import Header from '../../components/PageLayout/Header';
 
-import SidebarWrapper from '../../components/PageLayout/Sidebar';
-import PostCard from '../../components/PostCard';
-import SEO from '../../components/Seo';
+import Header from '@/components/PageLayout/Header';
+import SidebarWrapper from '@/components/PageLayout/Sidebar';
+import PostCard from '@/components/PostCard';
+import SEO from '@/components/Seo';
 
 const Blog = ({ data }) => (
   <Layout className="outerPadding">

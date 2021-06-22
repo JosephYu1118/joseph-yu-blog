@@ -1,9 +1,7 @@
-/* eslint-disable func-names */
-/* Vendor imports */
 import React from 'react';
 import PropTypes from 'prop-types';
-/* App imports */
-import Config from '../../../config';
+
+import gatsbyConfig from '@/config/gatsbyConfig';
 
 class Comments extends React.Component {
   componentDidMount() {
@@ -22,11 +20,11 @@ class Comments extends React.Component {
         this.page.url = pageCanonicalUrl;
         this.page.identifier = pageId;
       };
-      (function () {
+      (function add() {
         // eslint-disable-next-line no-undef
         const d = document;
         const s = d.createElement('script');
-        s.src = Config.disqusScript;
+        s.src = gatsbyConfig.disqusScript;
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
       }());
