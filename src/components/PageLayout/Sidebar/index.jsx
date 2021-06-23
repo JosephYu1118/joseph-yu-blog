@@ -4,7 +4,7 @@ import {
 } from 'antd';
 
 import useWindowSize from '@/hooks/useWindowSize';
-import * as styles from './sidebar.module.less';
+import * as styles from './sidebar.module.scss';
 
 const { Content } = Layout;
 // const {
@@ -58,9 +58,6 @@ const DomContent = () => (
           </a>
         </li>
       </ul>
-      <div className={styles.resumeDownload}>
-        <a href="../resume.pdf" download target="_blank">Download CV</a>
-      </div>
     </div>
   </aside>
 );

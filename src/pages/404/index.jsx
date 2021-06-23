@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { Link, graphql } from 'gatsby';
 import Header from '@/components/PageLayout/Header';
 import { Sidebar404 } from '@/components/PageLayout/Sidebar';
-import * as styles from './404.module.less';
+import * as styles from './404.module.scss';
 
 export const query = graphql`
   {

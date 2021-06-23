@@ -10,8 +10,8 @@ import SEO from '@/components/Seo';
 import Comment from '@/components/Comment';
 import Utils from '@/utils/pageUtils';
 import gatsbyConfig from '@/config/gatsbyConfig';
-import './highlight-syntax.less';
-import * as styles from './post.module.less';
+import './highlight-syntax.scss';
+import * as styles from './post.module.scss';
 
 const Post = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;

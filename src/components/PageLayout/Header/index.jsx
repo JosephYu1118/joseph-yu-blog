@@ -3,8 +3,7 @@ import { Link } from 'gatsby';
 import { Layout } from 'antd';
 
 import useWindowSize from '@/hooks/useWindowSize';
-import '@/styles/global.less';
-import * as styles from './header.module.less';
+import * as styles from './header.module.scss';
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
@@ -49,11 +48,6 @@ const Header = () => {
             <li className={styles.navItem}>
               <Link to="/tags" onClick={toggleMenu} activeClassName={styles.anchorActive}>
                 Tags
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/resume" onClick={toggleMenu} activeClassName={styles.anchorActive}>
-                Resume
               </Link>
             </li>
           </ul>

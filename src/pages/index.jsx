@@ -5,6 +5,7 @@ import Header from '@/components/PageLayout/Header';
 import SidebarWrapper from '@/components/PageLayout/Sidebar';
 import AboutMe from '@/components/PageFragments/HomePage/AboutMe';
 import Skills from '@/components/PageFragments/HomePage/SkillProgress';
+import '@/assets/styles/global.scss';
 
 const App = () => (
   <Layout className="outerPadding">

@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import Utils from '@/utils/pageUtils';
 import gatsbyConfig from '@/config/gatsbyConfig';
-import * as styles from './tags.module.less';
+import * as styles from './tags.module.scss';
 
 const TagCard = (props) => {
   const {

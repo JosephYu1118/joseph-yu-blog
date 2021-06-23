@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Link } from 'gatsby';
 
 import Utils from '@/utils/pageUtils';
-import * as styles from './postCard.module.less';
+import * as styles from './postCard.module.scss';
 
 const PostCard = (props) => {
   const { data: { node: { frontmatter } } } = props;

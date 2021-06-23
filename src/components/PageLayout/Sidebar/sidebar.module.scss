@@ -1,0 +1,107 @@
+.content {
+  border-radius: $border-radius-content;
+  margin: 0;
+  min-height: 280px;
+}
+
+.sidebarContent {
+  border-radius: $border-radius-full;
+  margin: 0;
+  aside {
+    padding: $padding-margin-val;
+    .profileAvatar {
+      background-image: url('../../../images/rolwinreevan.jpeg');
+      height: 219px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: bottom;
+      border-radius: $border-radius-full;
+      @media screen and (max-width: 767px) {
+        max-width: 230px;
+        margin: auto;
+      }
+    }
+    .name {
+      margin-top: 1.4rem;
+      h2 {
+        font-weight: 200;
+        letter-spacing: 2px;
+      }
+      span {
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+      .badge {
+        margin-top: 0.5rem;
+        font-size: 0.837rem;
+        font-weight: 400;
+        border-radius: 10rem;
+        padding: 0.6rem 1rem;
+      }
+      .badgeGray {
+        background-color: #E9EDF0;
+        color: #44566C;
+      }
+      .boxName {
+        width: 100%;
+      }
+      ul {
+        list-style-type: none;
+        a {
+          color: rgba(0, 0, 0, 0.65);
+          width: 200px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .contactBlock {
+        color: #44566C;
+        font-size: 0.937rem;
+        padding-left: 0;
+        margin-bottom: 1.3rem;
+        @media screen and (max-width: 767px) {
+          max-width: 230px;
+        }
+      }
+      .contactBlockItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+  a {
+    color: rgba(0, 0, 0, 0.65);
+    &:hover {
+      color: rgba(0, 0, 0, 0.65);
+    }
+    .emailHider {
+      font-size: 0.837rem;
+      font-weight: 400 !important;
+      &:before {
+        content: 'rolwinmonteiro';
+      }
+      &:after {
+        content: 'gmail.com';
+      }
+    }
+  }
+}
+
+.background {
+  background-color: white;
+}
+
+.boxContent {
+  padding: $padding-margin-val;
+  padding-left: 0;
+  @media screen and (max-width: 767px) {
+    padding: $padding-margin-val;
+    padding-top: 0;
+  }
+}
+
+.sideBar404Radius {
+  border-radius: 3rem 0 3rem 3rem;
+}

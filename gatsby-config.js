@@ -1,3 +1,5 @@
+const Sass = require('sass');
+
 const config = require('./src/config/gatsbyConfig');
 
 module.exports = {
@@ -16,9 +18,12 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-antd',
-    'gatsby-plugin-less',
     {
       resolve: 'gatsby-plugin-sass',
+      options: {
+        implementation: Sass,
+        additionalData: `@import '${__dirname}/src/assets/styles/variables.scss';`,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',

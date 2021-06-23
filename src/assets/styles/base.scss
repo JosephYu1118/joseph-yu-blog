@@ -1,0 +1,9 @@
+@import './reset.scss';
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	line-height: normal;
+	touch-action: manipulation;
+}

@@ -1,0 +1,39 @@
+// ========================================
+//      Colors
+// ================================================================================
+$black: #000;
+$white: #FFF;
+
+$border-radius-content: 3rem 0 3rem 3rem;
+$border-radius-full: 3rem 3rem 3rem 3rem;
+$body-width: 1264px;
+$padding-margin-val: 2.5rem;
+$theme-text: #cccccc;
+
+// --------------------
+//      Border
+// ----------------------------------------
+
+// --------------------
+//      Background
+// ----------------------------------------
+
+// --------------------
+//      Text
+// ----------------------------------------
+
+// ========================================
+//      Mixins
+// ================================================================================
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

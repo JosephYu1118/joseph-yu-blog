@@ -9,7 +9,7 @@ import PostCard from '@/components/PostCard';
 import SidebarWrapper from '@/components/PageLayout/Sidebar';
 import Utils from '@/utils/pageUtils';
 import gatsbyConfig from '@/config/gatsbyConfig';
-import * as styles from './tags.module.less';
+import * as styles from './tags.module.scss';
 
 const TagPage = ({ data, pageContext }) => {
   const { tag } = pageContext;

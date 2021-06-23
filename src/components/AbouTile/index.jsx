@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from './about.module.less';
+import * as styles from './about.module.scss';
 
 const AboutTile = (props) => {
   const {
@@ -16,7 +16,7 @@ const AboutTile = (props) => {
         />
       </div>
       <div className={`textCenter ${styles.mrTp26PX}`}>
-        <h4>{ textH4 || ''}</h4>
+        <h4>{textH4 || ''}</h4>
         <h3>{textH3 || '' }</h3>
       </div>
     </div>
