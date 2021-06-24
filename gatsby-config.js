@@ -1,3 +1,5 @@
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
+
 const Sass = require('sass');
 
 const config = require('./src/config/gatsbyConfig');
@@ -29,7 +31,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets/images`,
       },
     },
     {
@@ -71,6 +73,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-disqus',
+      options: {
+        shortname: 'joseph-yu-blog',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Joseph Yu',
@@ -80,7 +88,7 @@ module.exports = {
         theme_color: '#F4D35E',
         display: 'standalone',
         // This path is relative to the root of the site.
-        icon: 'src/images/icon.png',
+        icon: 'src/assets/images/favicon.png',
         // This will add apple-touch-icon links to <head>. Required for versions prior to iOS 11.3.
         legacy: true,
       },

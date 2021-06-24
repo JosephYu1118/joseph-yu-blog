@@ -33,6 +33,7 @@
   ],
   "rules": {
     "no-console": "off",
+    "global-require": "off",
     "react/prop-types": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": "off"

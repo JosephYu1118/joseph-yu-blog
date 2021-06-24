@@ -9,6 +9,7 @@ const Header = () => {
   const [menu, setMenu] = useState(false);
 
   const [windowWidth] = useWindowSize();
+
   const toggleMenu = () => {
     if (windowWidth !== 0 && windowWidth <= 768) {
       if (menu) {
@@ -18,6 +19,7 @@ const Header = () => {
       }
     }
   };
+
   return (
     <>
       <div className={styles.circleMenu} role="button" tabIndex="0" onKeyDown={toggleMenu} onClick={toggleMenu}>
@@ -36,11 +38,6 @@ const Header = () => {
               </Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/contact" onClick={toggleMenu} activeClassName={styles.anchorActive}>
-                Contact
-              </Link>
-            </li>
-            <li className={styles.navItem}>
               <Link to="/blog" onClick={toggleMenu} activeClassName={styles.anchorActive}>
                 Blog
               </Link>
@@ -48,6 +45,11 @@ const Header = () => {
             <li className={styles.navItem}>
               <Link to="/tags" onClick={toggleMenu} activeClassName={styles.anchorActive}>
                 Tags
+              </Link>
+            </li>
+            <li className={styles.navItem}>
+              <Link to="/contact" onClick={toggleMenu} activeClassName={styles.anchorActive}>
+                Contact
               </Link>
             </li>
           </ul>

@@ -28,7 +28,6 @@ const ContactForm = () => {
         message.success('Thank you for your kind response 🙂. Will get back to you.');
         form.resetFields();
       })
-      // eslint-disable-next-line no-console
       .catch((error) => console.error('Error:', error));
   };
 

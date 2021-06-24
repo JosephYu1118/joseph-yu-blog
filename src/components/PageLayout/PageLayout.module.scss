@@ -1,0 +1,23 @@
+.content {
+  border-radius: $border-radius-content;
+  margin: 0;
+  min-height: 280px;
+}
+
+.background {
+  background-color: white;
+}
+
+.sidebarContent {
+  border-radius: $border-radius-full;
+  margin: 0;
+}
+
+.boxContent {
+  padding: $padding-margin-val;
+  padding-left: 0;
+  @media screen and (max-width: 767px) {
+    padding: $padding-margin-val;
+    padding-top: 0;
+  }
+}

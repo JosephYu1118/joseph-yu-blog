@@ -19,7 +19,10 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}) {
+      allMarkdownRemark(sort: {
+        order: DESC,
+        fields: [frontmatter___date]}
+      ) {
         edges {
           node {
             frontmatter {
@@ -49,7 +52,7 @@ exports.createPages = ({ actions, graphql }) => {
 
       createPage({
         path: node.frontmatter.path,
-        component: path.resolve('src/templates/post/post.jsx'),
+        component: path.resolve('src/templates/posts/index.jsx'),
         context: {
           postPath: node.frontmatter.path,
           translations: utils.getRelatedTranslations(node, allMarkdownRemark.edges),
