@@ -1,0 +1,50 @@
+@import '@/assets/styles/animations.scss';
+
+.progressBar {
+  @include flex-center;
+  justify-content: flex-start;
+  position: relative;
+  .container {
+    width: 100%;
+    height: 20px;
+    border-radius: 10px;
+    background-color: $light-cyan;
+    @include flex-center;
+    justify-content: flex-start;
+    position: relative;
+    .progress {
+      height: 100%;
+      border-radius: 10px;
+      background-color: $maximum-blue;
+      position: relative;
+      @for $value from 3 through 9 {
+        &.value#{$value}0 {
+          width: 10% * $value;
+        }
+      }
+      &.animation {
+        &:after {
+          content: '';
+          height: 100%;
+          border-radius: 10px;
+          background-color: rgba($white, 0.2);
+          @include flex-center;
+          justify-content: flex-start;
+          position: absolute;
+          animation: glitter 1s ease-out;
+        }
+      }
+    }
+    .title {
+      font-size: 15px;
+      color: $white;
+      position: absolute;
+      left: 15px;
+    }
+  }
+  .value {
+    margin-left: 10px;
+    font-size: 13px;
+    color: $black;
+  }
+}

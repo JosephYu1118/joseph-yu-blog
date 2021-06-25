@@ -5,8 +5,10 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { Row, Col } from 'antd';
 
 import stripHtmlTags from '@/utils/stripHtmlTags';
+import skillMap from '@/lib/skillMap';
 import PageLayout from '@/components/PageLayout';
-import Skills from '@/components/PageFragments/HomePage/SkillProgress';
+import ProgressBar from '@/components/ProgressBar';
+import ProgressCircle from '@/components/ProgressCircle';
 import '@/assets/styles/global.scss';
 
 const paragraphList = [
@@ -63,7 +65,26 @@ const About = () => {
       {paragraphList.map((paragraph) => (
         <p key={paragraph} dangerouslySetInnerHTML={{ __html: paragraph }} />
       ))}
-      <Skills />
+      <div>Main skills</div>
+      <Row gutter={[20, 20]}>
+        {skillMap.main.map(({ title, value }) => (
+          <Col key={title} xs={12} sm={12} md={8} lg={4}>
+            <ProgressCircle title={title} value={value} />
+          </Col>
+        ))}
+      </Row>
+      <div>Related skills</div>
+      <Row gutter={[10, 10]}>
+        {skillMap.related.map(({ title, value }) => (
+          <Col key={title} xs={24} sm={24} md={12} lg={12}>
+            <ProgressBar title={title} value={value} />
+          </Col>
+        ))}
+      </Row>
+      <div>其他正在學習、工作曾經使用過的技能：</div>
+      {skillMap.others.map((skill) => (
+        <div key={skill}>{skill}</div>
+      ))}
       <div>Photos</div>
       <Row gutter={[10, 10]}>
         {imageData.allImageSharp.nodes.map(({ id, gatsbyImageData }) => (

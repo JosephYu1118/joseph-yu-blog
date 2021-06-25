@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from 'antd';
 
 import PageLayout from '@/components/PageLayout';
-import ContactForm from '@/components/PageFragments/ContactForm';
+import ContactForm from '@/components/ContactForm';
 
 const seoConfig = {
   path: 'contact',

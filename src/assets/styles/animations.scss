@@ -1,0 +1,37 @@
+// ========================================
+//      Keyframes
+// ================================================================================
+// --------------------
+//      Progress Bar
+// ----------------------------------------
+@keyframes glitter {
+  0% {
+    width: 0;
+    background-color: rgba($white, 0.8);
+    opacity: 1;
+  }
+  20% {
+    background-color: rgba($white, 0.5);
+  }
+  60% {
+    background-color: rgba($white, 0.3);
+  }
+  80% {
+    width: 100%;
+    background-color: rgba($white, 0);
+  }
+  100% {
+    width: 100;
+    background-color: rgba($white, 0);
+    opacity: 0;
+  }
+}
+
+// --------------------
+//      Progress Circle
+// ----------------------------------------
+@keyframes grow {
+  0% {
+    stroke-dashoffset: 628;
+  }
+}

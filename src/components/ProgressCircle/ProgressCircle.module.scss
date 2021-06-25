@@ -1,0 +1,42 @@
+@import '@/assets/styles/animations.scss';
+
+.progressCircle {
+  @include flex-center;
+  position: relative;
+  .container {
+    width: 100%;
+    svg {
+      transform: scaleX(-1) rotate(-90deg);
+      circle {
+        stroke-width: 20px;
+        fill: transparent;
+        stroke-linecap: round;
+        stroke-dasharray: 628;
+        &.base {
+          stroke: rgba($carrot-orange, 0.2);
+        }
+        &.progress {
+          stroke: transparent;
+          &.animation {
+            stroke: $carrot-orange;
+            animation: grow 1s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+  .description {
+    @include flex-center;
+    flex-direction: column;
+    position: absolute;
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      color: $maximum-blue;
+    }
+    .value {
+      font-size: 15px;
+      color: $carrot-orange;
+    }
+  }
+}
