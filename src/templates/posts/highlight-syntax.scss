@@ -10,7 +10,7 @@
   }
 }
 
-@mixin language-label-colors($language,$content, $background, $text: $theme-text) {
+@mixin language-label-colors($language,$content, $background, $text: #ccc) {
   $selector: '.gatsby-highlight[data-language=#{$language}]::before';
   #{$selector} {
     color: $text;

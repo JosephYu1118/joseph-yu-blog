@@ -26,12 +26,12 @@ const ProgressBar = ({ title, value }) => {
           className={`${styles.progress} ${styles[`value${value}`]} ${styles.animation}`}
           onAnimationEnd={handleAnimationEnd}
         />
-        <div className={styles.title}>{title}</div>
+        <p className={styles.title}>{title}</p>
       </div>
-      <div className={styles.value}>
+      <p className={styles.value}>
         {value}
         %
-      </div>
+      </p>
     </div>
   );
 };

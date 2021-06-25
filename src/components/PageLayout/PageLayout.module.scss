@@ -1,23 +1,23 @@
-.content {
-  border-radius: $border-radius-content;
-  margin: 0;
-  min-height: 280px;
-}
-
-.background {
-  background-color: white;
-}
-
-.sidebarContent {
-  border-radius: $border-radius-full;
-  margin: 0;
-}
-
-.boxContent {
-  padding: $padding-margin-val;
-  padding-left: 0;
-  @media screen and (max-width: 767px) {
-    padding: $padding-margin-val;
-    padding-top: 0;
+.pageLayout {
+  padding: 2rem;
+  @include flex-center;
+  @media screen and (max-width: 768px) {
+    padding: 1rem;
+  }
+  .container { 
+    width: 100%;
+    max-width: 1264px;
+    min-height: 100vh;
+    .content {
+      min-height: 20rem;
+      border-radius: 3rem 0 0 3rem;
+      background-color: $white;
+      .childrenLayout {
+        padding: 2.5rem 2.5rem 2.5rem 0;
+        @media screen and (max-width: 768px) {
+          padding: 1.5rem;
+        }
+      }
+    }
   }
 }

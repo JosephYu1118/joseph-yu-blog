@@ -1,0 +1,118 @@
+.header {
+  position: relative;
+  .menu {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50% 0 50% 50%;
+    background-color: $yale-blue;
+    @include flex-center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 200;
+    box-shadow: 0 1.2rem 2.2rem rgba($black, 0.1), 0 0.5rem 1rem rgba($black, 0.1);
+    visibility: hidden;
+    pointer-events: none;
+    @media screen and (max-width: 768px) {
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .container {
+      cursor: pointer;
+      &.active {
+        .line {
+          width: 1.2rem;
+          height: 0.15rem;
+          border-radius: 0.3rem;
+          background-color: $carrot-orange;
+          transition: all 0.2s ease-in-out;
+          &:nth-child(1) {
+            transform: translate3d(0, 0, 0) rotate(45deg);
+          }
+          &:nth-child(2) {
+            transform: translate3d(0, -0.13rem, 0) rotate(-45deg);
+          }
+        }
+        .menuText {
+          display: none;
+        }
+      }
+      .menuText {
+        width: 100%;
+        font-family: 'Titillium Web';
+        font-size: 0.9rem;
+        font-weight: 900;
+        color: $carrot-orange;
+      }
+    }
+  }
+  .navigationBar {
+    max-width: 1264px;
+    @include flex-center;
+    align-items: flex-end;
+    &.vertical {
+      .container {
+        width: 100%;
+        height: 100%;
+        background-color: $light-cyan;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        &:before {
+          background-image: none;
+          display: none;
+        }
+        .navigationItem {
+          margin-bottom: 1rem;
+          font-size: 1.7rem;
+          &.active {
+            background-color: transparent;
+            color: $carrot-orange;
+          }
+        }
+      }
+    }
+    &.hidden {
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+    .container {
+      width: 28rem;
+      padding-top: 1rem;
+      border-radius: 0 3rem 0 0;
+      background-color: $white;
+      @include flex-center;
+      position: relative;
+      &:before {
+        content: '';
+        width: 7.8rem;
+        height: 100%;
+        background-image: url('@/assets/images/navigation-bar-edge.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        right: 99%;
+        z-index: 0;
+      }
+      .navigationItem {
+        margin-right: 0.4rem;
+        padding: 0.6rem 1rem;
+        background-color: transparent;
+        font-family: 'Titillium Web';
+        font-size: 1.2rem;
+        font-weight: 300;
+        color: $yale-blue;
+        &.active {
+          border-radius: 1rem;
+          background-color: $maximum-blue;
+          color: $white;
+        }
+      }
+    }
+  }
+}

@@ -23,8 +23,8 @@ const TagCard = ({
           style={{ backgroundImage: `url(${img})` }}
         />
         <div className={styles.pd20px}>
-          <div className="textCenter">
-            <h4 style={{ color: `${color}` }}>
+          <div className={styles.text}>
+            <h4 style={{ color }}>
               #
               {name}
             </h4>

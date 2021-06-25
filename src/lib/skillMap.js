@@ -99,6 +99,7 @@ const skillMap = {
     'Bootstrap',
     'Material Design',
     'LESS',
+    'Pug',
   ],
 };
 

@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 import gatsbyConfig from '@/config/gatsbyConfig';
 import pageUtils from '@/utils/pageUtils';
 import PageLayout from '@/components/PageLayout';
-import PostCard from '@/components/PostCard';
+import ArticleCard from '@/components/ArticleCard';
 import * as styles from './tags.module.scss';
 
 const { capitalize, resolvePageUrl } = pageUtils;
@@ -31,14 +31,14 @@ const TagPage = ({ data, pageContext }) => {
           {tagName}
         </h1>
         <div className={styles.bannerImgContainer} />
-        <h4 className="textCenter">
+        <h4 className={styles.text}>
           {gatsbyConfig.tags[tag].description}
         </h4>
       </div>
       <Row gutter={[20, 20]}>
         {posts.map((post) => (
           <Col key={post.node.id} xs={24} sm={24} md={12} lg={8}>
-            <PostCard data={post} />
+            <ArticleCard data={post} />
           </Col>
         ))}
       </Row>

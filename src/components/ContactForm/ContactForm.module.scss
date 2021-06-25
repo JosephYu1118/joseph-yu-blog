@@ -1,0 +1,17 @@
+.contactForm {
+  width: 100%;
+  .input {
+    &::placeholder {
+      font-family: 'Titillium Web';
+    }
+  }
+  .submitButton {
+    border: 0;
+    background-color: rgba($carrot-orange, 0.7);
+    font-family: 'Titillium Web';
+    color: $white;
+    &:hover {
+      background-color: $carrot-orange;
+    }
+  }
+}

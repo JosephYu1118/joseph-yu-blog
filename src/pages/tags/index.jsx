@@ -27,9 +27,7 @@ const Tags = ({ data }) => {
 
   return (
     <PageLayout seoConfig={seoConfig}>
-      <div className="marginTopTitle">
-        <h1 className="titleSeparate">#Tags</h1>
-      </div>
+      <h1 className="mainTitle">#Tags</h1>
       <Row gutter={[30, 20]}>
         {edges.map((val) => (
           <Col key={val.node.id} xs={24} sm={24} md={12} lg={8}>

@@ -40,11 +40,11 @@ const ProgressCircle = ({ title, value }) => {
         </svg>
       </div>
       <div className={styles.description}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.value}>
+        <p className={styles.title}>{title}</p>
+        <p className={styles.value}>
           {value}
           %
-        </div>
+        </p>
       </div>
     </div>
   );

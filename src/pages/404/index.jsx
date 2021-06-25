@@ -20,15 +20,15 @@ const Error = ({ data }) => (
                 alt="404"
               />
             </div>
-            <div className={`textCenter ${styles.boxContent}`}>
+            <div className={styles.boxContent}>
               <h1>This page was lost</h1>
               <p>
                 The Page You are looking for isn’t available. Try to search again or use
                 the Go Back button below.
               </p>
               <Link to="/">
-                <div className={`centerAlign ${styles.textHover}`}>
-                  <div className={`${styles.goBackBtn}`}>
+                <div className={styles.textHover}>
+                  <div className={styles.goBackBtn}>
                     <svg
                       stroke="currentColor"
                       fill="currentColor"

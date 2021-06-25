@@ -5,5 +5,58 @@ html, body {
 	height: 100%;
 	margin: 0 auto;
 	line-height: normal;
+  font-family: 'Noto Sans TC';
+  font-size: 93.75%;
 	touch-action: manipulation;
+  // @media screen and (max-width: 768px) {
+  //   font-size: 62.5%;
+  // }
+}
+
+* {
+  letter-spacing: 1px;
+}
+
+.mainTitle {
+  margin-bottom: 3rem;
+  font-family: 'Titillium Web';
+  font-size: 2rem;
+  font-weight: 600;
+  color: $yale-blue;
+  position: relative;
+  &:before, &:after {
+    content: '';
+    width: 3.5rem;
+    height: 0.3rem;
+    border-radius: 0.5rem;
+    background-color: $carrot-orange;
+    position: absolute;
+    bottom: -0.8rem;
+    left: 0;
+  }
+  &:after {
+    width: 1.5rem;
+    background-color: $yale-blue;
+  }
+}
+
+.subTitle {
+  margin: 2rem 0 1rem 0;
+  font-family: 'Titillium Web';
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $ming;
+  &.chinese {
+    font-family: 'Noto Sans TC';
+    font-size: 1.3rem;
+  }
+}
+
+.paragraph {
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.eventDisabled {
+  pointer-events: none;
 }

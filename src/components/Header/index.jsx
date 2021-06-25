@@ -3,59 +3,67 @@ import { Link } from 'gatsby';
 import { Layout } from 'antd';
 
 import useWindowSize from '@/hooks/useWindowSize';
-import * as styles from './header.module.scss';
+import * as styles from './Header.module.scss';
+
+const navigationList = [
+  {
+    path: '/',
+    name: 'About',
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+  },
+  {
+    path: '/tags',
+    name: 'Tags',
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+  },
+];
 
 const Header = () => {
-  const [menu, setMenu] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const [windowWidth] = useWindowSize();
 
   const toggleMenu = () => {
     if (windowWidth !== 0 && windowWidth <= 768) {
-      if (menu) {
-        setMenu(false);
-      } else {
-        setMenu(true);
-      }
+      setIsMenuVisible(!isMenuVisible);
     }
   };
 
   return (
-    <>
-      <div className={styles.circleMenu} role="button" tabIndex="0" onKeyDown={toggleMenu} onClick={toggleMenu}>
-        <div className={`${styles.hamburger} ${menu ? styles.menuIcon : null}`}>
+    <div className={styles.header}>
+      <button
+        className={styles.menu}
+        type="button"
+        onClick={toggleMenu}
+      >
+        <div className={`${styles.container} ${isMenuVisible ? styles.active : ''}`}>
           <div className={styles.line} />
           <div className={styles.line} />
-          <div className={styles.hamburgerText}>MENU</div>
+          <div className={styles.menuText}>MENU</div>
         </div>
-      </div>
-      <Layout className={`${styles.navWrap} ${menu ? null : styles.hidden} ${menu ? styles.openMenu : null}`}>
-        <div className={styles.backgroundDiv}>
-          <ul className={styles.nav}>
-            <li className={styles.navItem}>
-              <Link to="/" onClick={toggleMenu} activeClassName={styles.anchorActive}>
-                About
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/blog" onClick={toggleMenu} activeClassName={styles.anchorActive}>
-                Blog
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/tags" onClick={toggleMenu} activeClassName={styles.anchorActive}>
-                Tags
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/contact" onClick={toggleMenu} activeClassName={styles.anchorActive}>
-                Contact
-              </Link>
-            </li>
-          </ul>
+      </button>
+      <Layout className={`${styles.navigationBar} ${isMenuVisible ? styles.vertical : styles.hidden}`}>
+        <div className={styles.container}>
+          {navigationList.map(({ path, name }) => (
+            <Link
+              key={name}
+              to={path}
+              className={styles.navigationItem}
+              activeClassName={styles.active}
+              onClick={toggleMenu}
+            >
+              {name}
+            </Link>
+          ))}
         </div>
       </Layout>
-    </>
+    </div>
   );
 };
 

@@ -29,9 +29,7 @@ const seoConfig = {
 
 const Contact = () => (
   <PageLayout seoConfig={seoConfig}>
-    <div className="marginTopTitle">
-      <h1 className="titleSeparate">Contact</h1>
-    </div>
+    <h1 className="mainTitle">Contact</h1>
     <Row gutter={[40, 20]}>
       <ContactForm />
     </Row>

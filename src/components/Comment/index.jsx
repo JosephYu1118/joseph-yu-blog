@@ -10,4 +10,5 @@ const Comment = ({ pageId, title }) => (
     }}
   />
 );
+
 export default Comment;

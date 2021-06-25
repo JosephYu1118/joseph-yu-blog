@@ -1,0 +1,15 @@
+.otherSkills {
+  @include flex-center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  .badge {
+    margin: 0.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5rem;
+    background-color: $light-cyan;
+    font-family: 'Titillium Web';
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $air-superiority-blue;
+  }
+}

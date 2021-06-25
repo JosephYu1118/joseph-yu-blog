@@ -35,3 +35,21 @@
     stroke-dashoffset: 628;
   }
 }
+
+// --------------------
+//      Contact Item
+// ----------------------------------------
+@keyframes shake {
+  0% {
+    transform: none;
+  }
+  25% {
+    transform: rotateZ(5deg);
+  }
+  75% {
+    transform: rotateZ(-5deg);
+  }
+  100% {
+    transform: none;
+  }
+}

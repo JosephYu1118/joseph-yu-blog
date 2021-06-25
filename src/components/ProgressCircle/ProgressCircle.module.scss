@@ -8,7 +8,7 @@
     svg {
       transform: scaleX(-1) rotate(-90deg);
       circle {
-        stroke-width: 20px;
+        stroke-width: 1.3rem;
         fill: transparent;
         stroke-linecap: round;
         stroke-dasharray: 628;
@@ -30,12 +30,14 @@
     flex-direction: column;
     position: absolute;
     .title {
-      font-size: 20px;
+      font-family: 'Titillium Web';
+      font-size: 1.3rem;
       font-weight: bold;
       color: $maximum-blue;
     }
     .value {
-      font-size: 15px;
+      font-family: 'Titillium Web';
+      font-size: 1rem;
       color: $carrot-orange;
     }
   }

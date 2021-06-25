@@ -5,11 +5,8 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { Row, Col } from 'antd';
 
 import stripHtmlTags from '@/utils/stripHtmlTags';
-import skillMap from '@/lib/skillMap';
 import PageLayout from '@/components/PageLayout';
-import ProgressBar from '@/components/ProgressBar';
-import ProgressCircle from '@/components/ProgressCircle';
-import '@/assets/styles/global.scss';
+import Skills from '@/components/Skills';
 
 const paragraphList = [
   `
@@ -18,6 +15,8 @@ const paragraphList = [
     將 Vue 的專案轉換成 React，對於兩框架的 API 、元件生命週期、數據流有一定的概念。
     熟悉 JavaScript ES12、RESTful API 串接、Git 工作流程、打包工具 Webpack 的從頭建置等相關技術，
     並且持續學習、探索各種有趣的新技術以及讓自己的開發能更有效率且性能更佳的方式。
+    <br />
+    <br />
   `,
   `
     平時的我雖然有點宅，喜歡在家打電動、看電影，但我也是常跑戶外演唱會或音樂節，同時也是個熱愛旅遊，喜歡探索不同世界的人，
@@ -61,35 +60,20 @@ const About = () => {
 
   return (
     <PageLayout seoConfig={seoConfig}>
-      <h1 className="titleSeparate">About Me</h1>
+      <h1 className="mainTitle">About Me</h1>
       {paragraphList.map((paragraph) => (
-        <p key={paragraph} dangerouslySetInnerHTML={{ __html: paragraph }} />
+        <p
+          key={paragraph}
+          className="paragraph"
+          dangerouslySetInnerHTML={{ __html: paragraph }}
+        />
       ))}
-      <div>Main skills</div>
-      <Row gutter={[20, 20]}>
-        {skillMap.main.map(({ title, value }) => (
-          <Col key={title} xs={12} sm={12} md={8} lg={4}>
-            <ProgressCircle title={title} value={value} />
-          </Col>
-        ))}
-      </Row>
-      <div>Related skills</div>
-      <Row gutter={[10, 10]}>
-        {skillMap.related.map(({ title, value }) => (
-          <Col key={title} xs={24} sm={24} md={12} lg={12}>
-            <ProgressBar title={title} value={value} />
-          </Col>
-        ))}
-      </Row>
-      <div>其他正在學習、工作曾經使用過的技能：</div>
-      {skillMap.others.map((skill) => (
-        <div key={skill}>{skill}</div>
-      ))}
-      <div>Photos</div>
+      <Skills />
+      <h2 className="subTitle">Photos</h2>
       <Row gutter={[10, 10]}>
         {imageData.allImageSharp.nodes.map(({ id, gatsbyImageData }) => (
           <Col key={id} xs={24} sm={24} md={12} lg={8}>
-            <GatsbyImage image={gatsbyImageData} alt="" />
+            <GatsbyImage className="eventDisabled" image={gatsbyImageData} alt="" />
           </Col>
         ))}
       </Row>
