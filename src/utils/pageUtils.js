@@ -1,5 +1,3 @@
-const gatsbyConfig = require('../config/gatsbyConfig');
-
 const pageUtils = {
   /**
    * Join provided url paths.
@@ -28,57 +26,6 @@ const pageUtils = {
 
     return resolvedUrl;
   },
-  /**
-   * Get an ordered list of suggested posts for a single post.
-   * @param {Object} post The single post of which to find the related posts.
-   * It's the returned object from Graphql's query `markdownRemark`
-   * @param {Array} postList The list where find related posts. It's the returned
-   * object from Graphql's query `allMarkdownRemark`
-   * @param {number} limit The maximum number of suggested posts to get
-   * @return {Array} The `postList` object sorted according to the best match with the `post` object
-   */
-  getSuggestedPosts: (post, postList, limit) => {
-    // Get the number of common tags with provided post.
-    const getTagScore = (edge) => {
-      let commonTags = 0;
-
-      edge.node.frontmatter.tags.forEach((tag) => {
-        commonTags += post.frontmatter.tags.indexOf(tag) !== -1 ? 1 : 0;
-      });
-
-      return commonTags;
-    };
-
-    return postList.edges
-      .sort((edgeA, edgeB) => getTagScore(edgeB) - getTagScore(edgeA))
-      .slice(0, limit);
-  },
-  /**
-   * Pass a post and retrieve a list of related translations.
-   * @param {Object} post The post of which retrieve its translations.
-   * It accepts a `node` object from Graphql's query `allMarkdownRemark`
-   * @param {Object} postList The list of posts where search translations.
-   * It accepts a `edges` array from Graphql's query `allMarkdownRemark`
-   * @return {Object} An array of objects with languages as keys (ISO 639-1) and
-   * translated post's paths as values.
-   */
-  getRelatedTranslations: (post, postList) => postList
-    // Get posts in the same folder of provided post
-    .filter(({ node }) => node.fileAbsolutePath.split('/').slice(-2, -1)[0] === post.fileAbsolutePath.split('/').slice(-2, -1)[0])
-    .map(({ node }) => {
-      const lang = node.fileAbsolutePath.split('.').slice(-2, -1)[0];
-
-      return {
-        hreflang: lang.slice(-5) !== 'index' ? lang : gatsbyConfig.defaultLanguage,
-        path: pageUtils.resolvePageUrl(node.frontmatter.path),
-      };
-    }),
-  /**
-   * Capitalize passed string
-   * @param {string} str string to capitalize
-   * @return {string} string with first letter to uppercase
-   */
-  capitalize: (str) => str[0].toUpperCase() + str.slice(1),
 };
 
 module.exports = pageUtils;

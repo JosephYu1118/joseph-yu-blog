@@ -1,12 +1,11 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { Row, Col } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { graphql } from 'gatsby';
 
 import stripHtmlTags from '@/utils/stripHtmlTags';
 import PageLayout from '@/components/PageLayout';
 import Skills from '@/components/Skills';
+import Gallery from '@/components/Gallery';
 
 const paragraphList = [
   `
@@ -40,23 +39,17 @@ const seoConfig = {
   ],
 };
 
-const About = () => {
-  const imageData = useStaticQuery(graphql`
-    {
-      allImageSharp(filter: {
-        fluid: {
-          src: {
-            regex: "/0[1-9].jpg$/"
-          }
-        }
-      }) {
-        nodes {
-          id
-          gatsbyImageData
-        }
-      }
-    }
-  `);
+const About = ({ data }) => {
+  const [imageList, setImageList] = useState([]);
+
+  useEffect(() => {
+    if (!data) return;
+    const formattedList = data.allFile.nodes.map(({ childImageSharp }) => {
+      const { id, gatsbyImageData } = childImageSharp;
+      return { id, gatsbyImageData };
+    });
+    setImageList(formattedList);
+  }, [data]);
 
   return (
     <PageLayout seoConfig={seoConfig}>
@@ -69,16 +62,28 @@ const About = () => {
         />
       ))}
       <Skills />
-      <h2 className="subTitle">Photos</h2>
-      <Row gutter={[10, 10]}>
-        {imageData.allImageSharp.nodes.map(({ id, gatsbyImageData }) => (
-          <Col key={id} xs={24} sm={24} md={12} lg={8}>
-            <GatsbyImage className="eventDisabled" image={gatsbyImageData} alt="" />
-          </Col>
-        ))}
-      </Row>
+      <Gallery imageList={imageList} />
     </PageLayout>
   );
 };
+
+export const query = graphql`
+  {
+    allFile(
+      filter: { relativeDirectory: { regex: "/gallery/" } }
+      sort: {
+        fields: name
+        order: ASC
+      }
+    ) {
+      nodes {
+        childImageSharp {
+          id
+          gatsbyImageData
+        }
+      }
+    }
+  }
+`;
 
 export default About;

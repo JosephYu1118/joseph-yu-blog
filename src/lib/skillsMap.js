@@ -1,4 +1,4 @@
-const skillMap = {
+const skillsMap = {
   main: [
     {
       title: 'JavaScript',
@@ -87,20 +87,25 @@ const skillMap = {
       value: 60,
     },
     {
-      title: 'Gatsby',
+      title: 'CSS Modules',
+      value: 70,
+    },
+    {
+      title: 'Gatsby.js',
       value: 80,
     },
   ],
   others: [
     'Java',
     'Express.js',
+    'Sentry',
+    'Google Analytics',
     'Python',
     'Hexo',
     'Bootstrap',
-    'Material Design',
     'LESS',
     'Pug',
   ],
 };
 
-export default skillMap;
+export default skillsMap;

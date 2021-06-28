@@ -2,17 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import { Row, Col } from 'antd';
 
+import gatsbyConfig from '@/config/gatsbyConfig';
+import pageUtils from '@/utils/pageUtils';
+import tagsMap from '@/lib/tagsMap';
 import PageLayout from '@/components/PageLayout';
 import PostCard from '@/components/PostCard';
+import * as styles from './Tag.module.scss';
 
-const seoConfig = {
-  path: 'blog',
-  title: 'Blog',
-  description: '記錄自己學習的歷程、演算法還有一些在寫 code 時遇過的坑。',
-};
+const { resolvePageUrl } = pageUtils;
 
-const Blog = ({ data }) => {
+const TagTemplate = ({ data, pageContext }) => {
   const [postList, setPostList] = useState([]);
+
+  const tagName = tagsMap[pageContext.tag].name;
+  const seoConfig = {
+    path: resolvePageUrl(gatsbyConfig.pages.tags, pageContext.tag),
+    title: tagName,
+    description: `All posts about ${tagName}.`,
+    keywords: [tagName],
+  };
 
   useEffect(() => {
     if (!data) return;
@@ -40,7 +48,14 @@ const Blog = ({ data }) => {
 
   return (
     <PageLayout seoConfig={seoConfig}>
-      <h1 className="mainTitle">Blog</h1>
+      <div className={styles.container}>
+        <h2 className={styles.title}>
+          #
+          {' '}
+          {pageContext.tag}
+        </h2>
+        <div className={styles.demarcation} />
+      </div>
       <Row gutter={[20, 40]}>
         {postList.length && postList.map(({
           id,
@@ -67,10 +82,13 @@ const Blog = ({ data }) => {
   );
 };
 
-export const query = graphql`
-  {
+export const pageQuery = graphql`
+  query($tag: String!) {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/index.md$/" } }
+      filter: {
+        fileAbsolutePath: { regex: "/index.md$/" }
+        frontmatter: { tags: { in: [$tag] } }
+      }
       sort: {
         fields: [frontmatter___date]
         order: DESC
@@ -95,4 +113,4 @@ export const query = graphql`
   }
 `;
 
-export default Blog;
+export default TagTemplate;

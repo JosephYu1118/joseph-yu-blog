@@ -1,0 +1,25 @@
+.tagCard {
+  .container {
+    border-radius: 2rem;
+    @include flex-center;
+    flex-direction: column;
+    box-shadow: 0.2rem 0.3rem 0.5rem rgba($black, 0.1);
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: 0.3rem 0.4rem 0.6rem rgba($black, 0.2);
+      transform: translate3d(-0.2rem, -0.2rem, 0);
+    }
+    .image {
+      border-radius: 2rem 2rem 0 0;
+      box-shadow: 0 0.3rem 0.5rem rgba($black, 0.05);
+    }
+    .tagInfo {
+      padding: 1rem 0;
+      .title {
+        font-family: 'Titillium Web';
+        font-size: 1.5rem;
+        color: $air-superiority-blue;
+      }
+    }
+  }
+}

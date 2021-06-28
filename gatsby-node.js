@@ -1,7 +1,9 @@
 const path = require('path');
 
 const config = require('./src/config/gatsbyConfig');
-const utils = require('./src/utils/pageUtils');
+const pageUtils = require('./src/utils/pageUtils');
+
+const { resolvePageUrl } = pageUtils;
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
@@ -19,17 +21,16 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allMarkdownRemark(sort: {
-        order: DESC,
-        fields: [frontmatter___date]}
+      allMarkdownRemark(
+        sort: {
+          fields: [frontmatter___date]
+          order: DESC
+        }
       ) {
-        edges {
-          node {
-            frontmatter {
-              path
-              tags
-            }
-            fileAbsolutePath
+        nodes {
+          frontmatter {
+            path
+            tags
           }
         }
       }
@@ -39,51 +40,40 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    const { allMarkdownRemark } = result.data;
+    const postList = result.data.allMarkdownRemark.nodes;
+    const tagList = [];
 
-    /* Post pages */
-    allMarkdownRemark.edges.forEach(({ node }) => {
-      // Check path prefix of post
-      if (node.frontmatter.path.indexOf(config.pages.blog) !== 0) {
-        const errorMessage = `Invalid path prefix: ${node.frontmatter.path}`;
-
-        throw errorMessage;
-      }
-
-      createPage({
-        path: node.frontmatter.path,
-        component: path.resolve('src/templates/posts/index.jsx'),
-        context: {
-          postPath: node.frontmatter.path,
-          translations: utils.getRelatedTranslations(node, allMarkdownRemark.edges),
-        },
-      });
-    });
-
-    const regexForIndex = /index\.md$/;
-    // Posts in default language, excluded the translated versions
-    const defaultPosts = allMarkdownRemark.edges
-      .filter(({ node: { fileAbsolutePath } }) => fileAbsolutePath.match(regexForIndex));
-
-    /* Tag pages */
-    const allTags = [];
-
-    defaultPosts.forEach(({ node }) => {
-      node.frontmatter.tags.forEach((tag) => {
-        if (allTags.indexOf(tag) === -1) {
-          allTags.push(tag);
+    postList.forEach(({ frontmatter }) => {
+      frontmatter.tags.forEach((tag) => {
+        if (tagList.indexOf(tag) === -1) {
+          tagList.push(tag);
         }
       });
     });
 
-    allTags.forEach((tag) => {
+    /* Post pages */
+    postList.forEach(({ frontmatter }) => {
+      // Check path prefix of post
+      if (frontmatter.path.indexOf(config.pages.blog) !== 0) {
+        const errorMessage = `Invalid path prefix: ${frontmatter.path}`;
+        throw errorMessage;
+      }
       createPage({
-        path: utils.resolvePageUrl(config.pages.tag, tag),
-        component: path.resolve('src/templates/tags/index.jsx'),
+        path: frontmatter.path,
+        component: path.resolve('src/templates/Post/index.jsx'),
+        context: { postPath: frontmatter.path },
+      });
+    });
+
+    /* Tag pages */
+    tagList.forEach((tag) => {
+      createPage({
+        path: resolvePageUrl(config.pages.tags, tag),
+        component: path.resolve('src/templates/Tag/index.jsx'),
         context: { tag },
       });
     });
 
-    return 1;
+    return Promise.resolve();
   });
 };

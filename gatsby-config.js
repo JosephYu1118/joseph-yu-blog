@@ -96,25 +96,16 @@ module.exports = {
         theme_color: '#F4D35E',
         display: 'standalone',
         // This path is relative to the root of the site.
-        icon: 'src/assets/images/favicon.png',
+        icon: `${__dirname}/src/assets/images/favicon.png`,
         // This will add apple-touch-icon links to <head>. Required for versions prior to iOS 11.3.
         legacy: true,
       },
     },
     {
-      resolve: 'gatsby-plugin-i18n',
-      options: {
-        langKeyDefault: config.defaultLanguage,
-        useLangKeyLayout: false,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-nprogress',
       options: {
-        // Setting a color is optional.
-        color: 'black',
-        // Disable the loading spinner.
         showSpinner: true,
+        color: '#41BBD',
       },
     },
   ],

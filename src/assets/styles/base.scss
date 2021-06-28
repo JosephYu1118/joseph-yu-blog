@@ -8,9 +8,6 @@ html, body {
   font-family: 'Noto Sans TC';
   font-size: 93.75%;
 	touch-action: manipulation;
-  // @media screen and (max-width: 768px) {
-  //   font-size: 62.5%;
-  // }
 }
 
 * {
@@ -55,6 +52,28 @@ html, body {
 .paragraph {
   line-height: 1.7;
   font-size: 1rem;
+}
+
+.tagsBlock {
+  @include flex-center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  .tagBadge {
+    margin: 0.3rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 5rem;
+    background-color: $light-cyan;
+    font-family: 'Titillium Web';
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: $ming;
+    cursor: pointer;
+    transition: all 0.1s;
+    &:hover {
+      background-color: $carrot-orange;
+      color: $light-cyan;
+    }
+  }
 }
 
 .eventDisabled {

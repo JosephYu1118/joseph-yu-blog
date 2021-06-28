@@ -1,0 +1,98 @@
+@mixin language-label-colors($language, $content, $text: $white) {
+  $selector: '.gatsby-highlight[data-language=#{$language}]::before';
+  #{$selector} {
+    content: $content;
+    text-align: end;
+    color: $text;
+    top: 0.5rem;
+    left: -1rem;
+  }
+}
+
+@include language-label-colors('html', 'html');
+@include language-label-colors('css', 'css');
+@include language-label-colors('javascript', 'JS');
+@include language-label-colors('typescript', 'TS');
+
+.language-text {
+  padding: 0.1rem 0.6rem !important;
+  border-radius: 0.5rem !important;
+  background-color: $light-cyan !important;
+  color: $yale-blue !important;
+}
+
+.gatsby-highlight {
+  position: relative;
+  &:before {
+    content: attr(data-language);
+    width: 100%;
+    text-indent: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &[data-language="text"], &[data-language="none"] {
+    &:before {
+      display: none;
+    }
+  }
+  pre {
+    margin: 2rem 0 2.5rem 0;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    background-color: #282a36 !important;
+    font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace' !important;
+    box-shadow: 0.2rem 0.5rem 0.8rem rgba($black, 0.5);
+    overflow-x: auto;
+    overflow-y: hidden;
+    code {
+      background-color: inherit;
+      line-height: 1.25rem;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #5ADBFF;
+      .keyword {
+        color: #7490F6;
+      }
+      .comment {
+        color: #626A73;
+      }
+      .punctuation {
+        color: $white;
+      }
+      .string {
+        color: #D7907B;
+      }
+      .function {
+        color: #FFC66D;
+      }
+      .class-name {
+        color: #FFC66D;
+      }
+      .builtin {
+        color: #FFC66D;
+      }
+      .operator {
+        color: $white;
+      }
+      .number {
+        color: #7A9EC2;
+      }
+    }
+    .language-html {
+      .token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.url, .token.inserted {
+        color: #FFC66D;
+      }
+      .token.tag {
+        color: #AAAAAA;
+      }
+      .token.property, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted {
+        color: #5ADBFF;
+      }
+      .token.atrule, .token.attr-value, .token.keyword {
+        color: #CB904D;
+      }
+    }
+  }
+}

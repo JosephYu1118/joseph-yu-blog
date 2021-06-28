@@ -1,39 +1,27 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import gatsbyConfig from '@/config/gatsbyConfig';
 import pageUtils from '@/utils/pageUtils';
-import * as styles from './tags.module.scss';
+import * as styles from './TagCard.module.scss';
 
 const { resolvePageUrl } = pageUtils;
 
-const TagCard = ({
-  img,
-  name,
-  description,
-  color,
-}) => {
-  const tagPage = gatsbyConfig.pages.tag;
+const { tags } = gatsbyConfig.pages;
 
-  return (
-    <Link className={styles.tagCard} to={resolvePageUrl(tagPage, name)}>
-      <div className={styles.tagCard}>
-        <div
-          className={styles.tagImg}
-          style={{ backgroundImage: `url(${img})` }}
-        />
-        <div className={styles.pd20px}>
-          <div className={styles.text}>
-            <h4 style={{ color }}>
-              #
-              {name}
-            </h4>
-          </div>
-          <p>{description}</p>
-        </div>
+const TagCard = ({ title, image }) => (
+  <Link className={styles.tagCard} to={resolvePageUrl(tags, title)}>
+    <div className={styles.container}>
+      <GatsbyImage className={styles.image} image={image} alt="" />
+      <div className={styles.tagInfo}>
+        <h4 className={styles.title}>
+          #
+          {title}
+        </h4>
       </div>
-    </Link>
-  );
-};
+    </div>
+  </Link>
+);
 
 export default TagCard;
