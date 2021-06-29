@@ -14,7 +14,7 @@ import * as styles from './Post.module.scss';
 
 const { resolvePageUrl } = pageUtils;
 
-const PostTemplate = ({ data }) => {
+const PostTemplate = ({ location, data }) => {
   const [postData, setPostData] = useState(null);
   const [seoConfig, setSeoConfig] = useState({});
 
@@ -58,7 +58,7 @@ const PostTemplate = ({ data }) => {
   }, [postData]);
 
   return (
-    <PageLayout seoConfig={seoConfig}>
+    <PageLayout seoConfig={seoConfig} location={location}>
       {postData && (
         <div className={styles.container}>
           <div className="tagsBlock">

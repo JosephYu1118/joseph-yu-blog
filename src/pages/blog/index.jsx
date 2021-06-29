@@ -11,7 +11,7 @@ const seoConfig = {
   description: '記錄自己學習的歷程、演算法還有一些在寫 code 時遇過的坑。',
 };
 
-const Blog = ({ data }) => {
+const Blog = ({ location, data }) => {
   const [postList, setPostList] = useState([]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Blog = ({ data }) => {
   }, [data]);
 
   return (
-    <PageLayout seoConfig={seoConfig}>
+    <PageLayout seoConfig={seoConfig} location={location}>
       <h1 className="mainTitle">Blog</h1>
       <Row gutter={[20, 40]}>
         {postList.length && postList.map(({

@@ -2,14 +2,15 @@ require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 
 const Sass = require('sass');
 
-const config = require('./src/config/gatsbyConfig');
+const gatsbyConfig = require('./src/config/gatsbyConfig');
 
 module.exports = {
-  pathPrefix: config.pathPrefix,
+  pathPrefix: gatsbyConfig.pathPrefix,
   siteMetadata: {
-    siteUrl: config.siteUrl,
-    title: config.siteTitle,
-    description: config.siteDescription,
+    siteUrl: gatsbyConfig.siteUrl,
+    title: gatsbyConfig.siteTitle,
+    author: gatsbyConfig.author,
+    description: gatsbyConfig.siteDescription,
   },
   plugins: [
     'gatsby-plugin-react-helmet',

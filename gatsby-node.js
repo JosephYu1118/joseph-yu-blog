@@ -1,6 +1,6 @@
 const path = require('path');
 
-const config = require('./src/config/gatsbyConfig');
+const gatsbyConfig = require('./src/config/gatsbyConfig');
 const pageUtils = require('./src/utils/pageUtils');
 
 const { resolvePageUrl } = pageUtils;
@@ -34,6 +34,17 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
+      allFile(
+        filter: { relativeDirectory: { regex: "/tags/" } }
+        sort: {
+          fields: name
+          order: ASC
+        }
+      ) {
+        nodes {
+          name
+        }
+      }
     }    
   `).then((result) => {
     if (result.errors) {
@@ -41,6 +52,7 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     const postList = result.data.allMarkdownRemark.nodes;
+    const defaultTagList = result.data.allFile.nodes;
     const tagList = [];
 
     postList.forEach(({ frontmatter }) => {
@@ -50,11 +62,16 @@ exports.createPages = ({ actions, graphql }) => {
         }
       });
     });
+    defaultTagList.forEach(({ name }) => {
+      if (tagList.indexOf(name) === -1) {
+        tagList.push(name);
+      }
+    });
 
     /* Post pages */
     postList.forEach(({ frontmatter }) => {
       // Check path prefix of post
-      if (frontmatter.path.indexOf(config.pages.blog) !== 0) {
+      if (frontmatter.path.indexOf(gatsbyConfig.pages.blog) !== 0) {
         const errorMessage = `Invalid path prefix: ${frontmatter.path}`;
         throw errorMessage;
       }
@@ -68,7 +85,7 @@ exports.createPages = ({ actions, graphql }) => {
     /* Tag pages */
     tagList.forEach((tag) => {
       createPage({
-        path: resolvePageUrl(config.pages.tags, tag),
+        path: resolvePageUrl(gatsbyConfig.pages.tags, tag),
         component: path.resolve('src/templates/Tag/index.jsx'),
         context: { tag },
       });

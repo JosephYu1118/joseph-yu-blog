@@ -39,7 +39,7 @@ const seoConfig = {
   ],
 };
 
-const About = ({ data }) => {
+const About = ({ location, data }) => {
   const [imageList, setImageList] = useState([]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const About = ({ data }) => {
   }, [data]);
 
   return (
-    <PageLayout seoConfig={seoConfig}>
+    <PageLayout seoConfig={seoConfig} location={location}>
       <h1 className="mainTitle">About Me</h1>
       {paragraphList.map((paragraph) => (
         <p

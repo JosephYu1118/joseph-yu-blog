@@ -11,7 +11,7 @@ const seoConfig = {
   description: '可以在此頁面透過有興趣的標籤找到相對應的文章',
 };
 
-const Tags = ({ data }) => {
+const Tags = ({ location, data }) => {
   const [tagList, setTagList] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Tags = ({ data }) => {
   }, [data]);
 
   return (
-    <PageLayout seoConfig={seoConfig}>
+    <PageLayout seoConfig={seoConfig} location={location}>
       <h1 className="mainTitle">Tags</h1>
       <Row gutter={[30, 20]}>
         {tagList.map(({ id, name, gatsbyImageData }) => (

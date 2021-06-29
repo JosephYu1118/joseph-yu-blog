@@ -4,8 +4,6 @@ module.exports = {
   siteUrl: 'http://localhost:8000',
   siteTitle: 'Joseph Yu Blog',
   siteDescription: 'Logbook of a front-end developer',
-  postsForArchivePage: 3,
-  defaultLanguage: 'en',
   contact: {
     github: 'https://github.com/JosephYu1118/joseph-yu-blog',
     twitter: 'https://twitter.com/yojosephwow',

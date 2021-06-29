@@ -21,8 +21,8 @@ const seoConfig = {
   ],
 };
 
-const Contact = () => (
-  <PageLayout seoConfig={seoConfig}>
+const Contact = ({ location }) => (
+  <PageLayout seoConfig={seoConfig} location={location}>
     <h1 className="mainTitle">Contact</h1>
     <Row gutter={[40, 20]}>
       <ContactForm />
