@@ -30,7 +30,6 @@ const TagTemplate = ({ location, data, pageContext }) => {
         path,
         title,
         tags,
-        cover: { childImageSharp: { gatsbyImageData } },
         date,
         excerpt,
       } = frontmatter;
@@ -39,7 +38,6 @@ const TagTemplate = ({ location, data, pageContext }) => {
         path,
         title,
         tagList: tags,
-        image: gatsbyImageData,
         date: date.split('T')[0].replaceAll('-', ' / '),
         excerpt,
       };
@@ -58,31 +56,28 @@ const TagTemplate = ({ location, data, pageContext }) => {
         <div className={styles.demarcation} />
       </div>
       <Row gutter={[20, 40]}>
-        {postList.length
-          ? (
-            postList.map(({
-              id,
-              path,
-              title,
-              tagList,
-              image,
-              date,
-              excerpt,
-            }) => (
-              <Col key={id} xs={24} sm={24} md={12} lg={8}>
-                <PostCard
-                  path={path}
-                  title={title}
-                  tagList={tagList}
-                  image={image}
-                  date={date}
-                  excerpt={excerpt}
-                />
-              </Col>
-            ))
-          ) : (
-            <NoData />
-          )}
+        {postList.length ? (
+          postList.map(({
+            id,
+            path,
+            title,
+            tagList,
+            date,
+            excerpt,
+          }) => (
+            <Col key={id} xs={24} sm={24} md={12} lg={8}>
+              <PostCard
+                path={path}
+                title={title}
+                tagList={tagList}
+                date={date}
+                excerpt={excerpt}
+              />
+            </Col>
+          ))
+        ) : (
+          <NoData />
+        )}
       </Row>
     </PageLayout>
   );
@@ -106,11 +101,6 @@ export const pageQuery = graphql`
           path
           title
           tags
-          cover {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
           date
           excerpt
         }

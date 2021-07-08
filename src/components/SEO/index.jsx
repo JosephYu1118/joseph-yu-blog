@@ -7,15 +7,28 @@ import pageUtils from '@/utils/pageUtils';
 const { resolvePageUrl } = pageUtils;
 const { siteUrl, siteTitle, pathPrefix } = gatsbyConfig;
 
+const initDescription = '身為前端工程師的學習雜記';
+
+const initKeyWords = [
+  '俞敬聲',
+  'Joseph',
+  'Yu',
+  'front-end',
+  'developer',
+  'JavaScript',
+  'React',
+  'Vue',
+  'Gatsby',
+];
+
 const SEO = ({
   path = '',
   title = '',
-  description = '',
-  keywords = [],
+  description = initDescription,
+  keywords = initKeyWords,
   imageUrl = '',
   contentType = 'website',
   lang = 'zh_TW',
-  translations,
 }) => {
   const [pageUrl, setPageUrl] = useState('');
 
@@ -31,13 +44,9 @@ const SEO = ({
     { name: 'keywords', content: keywords.join(', ') },
   ];
 
-  const link = [{ rel: 'canonical', href: pageUrl }].concat(
-    translations ? translations.map((obj) => ({
-      rel: 'alternate',
-      hreflang: obj.hreflang,
-      href: resolvePageUrl(siteUrl, pathPrefix, obj.path),
-    })) : [],
-  );
+  const link = [
+    { rel: 'canonical', href: pageUrl },
+  ];
 
   useEffect(() => {
     setPageUrl(resolvePageUrl(siteUrl, pathPrefix, path));

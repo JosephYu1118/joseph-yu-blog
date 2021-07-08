@@ -9,7 +9,7 @@ module.exports = {
     twitter: 'https://twitter.com/yojosephwow',
     facebook: 'https://www.facebook.com/josephyu1118',
     instagram: 'https://instagram.com/yojosephwow',
-    cakeResume: 'https://www.cakeresume.com/s--QamBGNEVLMlq96uE6Hi5hA--/josephyu',
+    cakeResume: 'https://www.cakeresume.com/s--OTo_gKyzwoKKxZafcGasgQ--/joseph-yu-1118',
   },
   contactFormUrl: process.env.CONTACT_FORM_ENDPOINT || 'https://getform.io/f/09a3066f-c638-40db-ad59-05e4ed71e451',
   pages: {

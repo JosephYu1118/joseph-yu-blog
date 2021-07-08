@@ -1,8 +1,8 @@
 import React from 'react';
 import { navigate } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 
 import gatsbyConfig from '@/config/gatsbyConfig';
+import tagsMap from '@/lib/tagsMap';
 import pageUtils from '@/utils/pageUtils';
 import * as styles from './PostCard.module.scss';
 
@@ -12,7 +12,6 @@ const PostCard = ({
   path,
   title,
   tagList,
-  image,
   date,
   excerpt,
 }) => {
@@ -21,18 +20,20 @@ const PostCard = ({
     navigate(routePath);
   };
 
+  const getImageStyle = () => {
+    const { backgroundColor, color } = tagsMap[tagList[0]];
+    return { backgroundColor, color };
+  };
+
   return (
     <div
       className={styles.postCard}
       role="presentation"
       onClick={(event) => handleNavigate(event, resolvePageUrl(path))}
     >
-      <div className={styles.postInfo}>
-        <GatsbyImage className={styles.image} image={image} alt="" />
-        <p className={styles.date}>{date}</p>
-        <h2 className={styles.title}>{title}</h2>
-        <p className={`paragraph ${styles.excerpt}`}>{excerpt}</p>
-      </div>
+      <div className={styles.image} style={getImageStyle()}>{title}</div>
+      <p className={styles.date}>{date}</p>
+      <p className={`paragraph ${styles.excerpt}`}>{excerpt}</p>
       <div className="tagsBlock">
         {tagList.map((tag) => (
           <button

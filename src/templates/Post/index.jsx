@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { graphql, navigate } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import 'prismjs/themes/prism-solarizedlight.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 import gatsbyConfig from '@/config/gatsbyConfig';
@@ -29,16 +28,17 @@ const PostTemplate = ({ location, data }) => {
       path,
       title,
       tags,
-      cover: { childImageSharp: { gatsbyImageData } },
+      cover,
       date,
       excerpt,
     } = frontmatter;
+    const image = cover?.childImageSharp.gatsbyImageData;
     setPostData({
       path,
       title,
       html,
       tagList: tags,
-      image: gatsbyImageData,
+      image,
       date: date.split('T')[0].replaceAll('-', ' / '),
       excerpt,
     });
@@ -77,7 +77,13 @@ const PostTemplate = ({ location, data }) => {
           </div>
           <h1 className={styles.title}>{postData.title}</h1>
           <p className={styles.date}>{postData.date}</p>
-          <GatsbyImage className={styles.image} image={postData.image} alt="" />
+          {postData.image && (
+            <GatsbyImage
+              className={`eventDisabled ${styles.image}`}
+              image={postData.image}
+              alt=""
+            />
+          )}
           <article dangerouslySetInnerHTML={{ __html: postData.html }} />
           <Comment pageId={postData.path} title={postData.title} />
         </div>

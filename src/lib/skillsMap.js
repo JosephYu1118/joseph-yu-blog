@@ -55,6 +55,10 @@ const skillsMap = {
       value: 80,
     },
     {
+      title: 'Bootstrap',
+      value: 70,
+    },
+    {
       title: 'GSAP',
       value: 70,
     },
@@ -102,7 +106,6 @@ const skillsMap = {
     'Google Analytics',
     'Python',
     'Hexo',
-    'Bootstrap',
     'LESS',
     'Pug',
   ],

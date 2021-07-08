@@ -1,4 +1,19 @@
-@mixin language-label-colors($language, $content, $text: $white) {
+// ========================================
+//      Colors
+// ================================================================================
+$raisin-black: #282A36;
+$black-coral: #626A73;
+$silver-chalice: #AAA;
+$cornflower-blue: #7490F6;
+$sky-blue-crayola: #5ADBFF;
+$persian-orange: #CB904D;
+$middle-red: #D7907B;
+$maximum-yellow-red: #FFC66D;
+
+// ========================================
+//      Mixins
+// ================================================================================
+@mixin language-label($language, $content, $text: $white) {
   $selector: '.gatsby-highlight[data-language=#{$language}]::before';
   #{$selector} {
     content: $content;
@@ -6,23 +21,38 @@
     color: $text;
     top: 0.5rem;
     left: -1rem;
+    z-index: 1;
   }
 }
 
-@include language-label-colors('html', 'html');
-@include language-label-colors('css', 'css');
-@include language-label-colors('javascript', 'JS');
-@include language-label-colors('typescript', 'TS');
+@include language-label('shell', 'Shell');
+@include language-label('html', 'HTML');
+@include language-label('css', 'CSS');
+@include language-label('javascript', 'JS');
+@include language-label('typescript', 'TS');
+
+// ========================================
+//      Class
+// ================================================================================
 
 .language-text {
-  padding: 0.1rem 0.6rem !important;
-  border-radius: 0.5rem !important;
-  background-color: $light-cyan !important;
-  color: $yale-blue !important;
+  padding: 0.1rem 0.6rem;
+  border-radius: 0.5rem;
+  background-color: $light-cyan;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font-family: 'Menlo', 'Monaco', 'Courier New', 'monospace';
+  color: $yale-blue;
+  user-select: text;
 }
 
 .gatsby-highlight {
   position: relative;
+  &[data-language="text"], &[data-language="none"] {
+    &:before {
+      display: none;
+    }
+  }
   &:before {
     content: attr(data-language);
     width: 100%;
@@ -31,67 +61,70 @@
     top: 0;
     left: 0;
   }
-  &[data-language="text"], &[data-language="none"] {
-    &:before {
-      display: none;
-    }
-  }
   pre {
     margin: 2rem 0 2.5rem 0;
-    padding: 2rem;
+    padding: 2.5rem 2rem 1rem 2rem;
     border-radius: 0.8rem;
-    background-color: #282a36 !important;
-    font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace' !important;
+    background-color: $raisin-black;
+    font-family: 'Menlo', 'Monaco', 'Courier New', 'monospace';
     box-shadow: 0.2rem 0.5rem 0.8rem rgba($black, 0.5);
     overflow-x: auto;
     overflow-y: hidden;
+    * {
+      user-select: text;
+    }
+    &.line-numbers {
+      padding-left: 4rem;
+      .line-numbers-rows {
+        margin-top: 2.5rem;
+        padding: 0 0.2rem 0 0.5rem;
+        border-right: 0.1rem solid rgba($white, 0.3);
+        line-height: 155%;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+    }
+    &.language-html {
+      .token {
+        &.selector, &.attr-name, &.string, &.char, &.builtin, &.url, &.inserted {
+          color: $maximum-yellow-red;
+        }
+        &.property, &.boolean, &.number, &.constant, &.symbol, &.deleted {
+          color: $sky-blue-crayola;
+        }
+        &.atrule, &.attr-value, &.keyword {
+          color: $persian-orange;
+        }
+        &.tag {
+          color: $silver-chalice;
+        }
+      }
+    }
     code {
       background-color: inherit;
       line-height: 1.25rem;
       font-family: inherit;
       font-size: 1rem;
       font-weight: bold;
-      color: #5ADBFF;
-      .keyword {
-        color: #7490F6;
+      color: $sky-blue-crayola;
+      &.language-text {
+        padding: 0;
+        color: $silver-chalice;
       }
-      .comment {
-        color: #626A73;
+      .function, .class-name, .builtin, .number {
+        color: $maximum-yellow-red;
       }
-      .punctuation {
+      .punctuation, .operator {
         color: $white;
+      }
+      .keyword {
+        color: $cornflower-blue;
       }
       .string {
-        color: #D7907B;
+        color: $middle-red;
       }
-      .function {
-        color: #FFC66D;
-      }
-      .class-name {
-        color: #FFC66D;
-      }
-      .builtin {
-        color: #FFC66D;
-      }
-      .operator {
-        color: $white;
-      }
-      .number {
-        color: #7A9EC2;
-      }
-    }
-    .language-html {
-      .token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.url, .token.inserted {
-        color: #FFC66D;
-      }
-      .token.tag {
-        color: #AAAAAA;
-      }
-      .token.property, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted {
-        color: #5ADBFF;
-      }
-      .token.atrule, .token.attr-value, .token.keyword {
-        color: #CB904D;
+      .comment {
+        color: $black-coral;
       }
     }
   }

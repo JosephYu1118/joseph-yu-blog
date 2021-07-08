@@ -36,7 +36,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Col className={styles.contactForm} sm={24} md={24} lg={12}>
+    <Col className={styles.contactForm} sm={24} md={24} lg={16}>
       <Form
         form={form}
         name="nest-messages"

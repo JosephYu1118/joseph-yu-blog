@@ -30,7 +30,7 @@ const Header = () => {
   const [windowWidth] = useWindowSize();
 
   const toggleMenu = () => {
-    if (windowWidth !== 0 && windowWidth <= 768) {
+    if (windowWidth <= 768) {
       setIsMenuVisible(!isMenuVisible);
     }
   };
@@ -43,9 +43,9 @@ const Header = () => {
         onClick={toggleMenu}
       >
         <div className={`${styles.container} ${isMenuVisible ? styles.active : ''}`}>
-          <div className={styles.line} />
-          <div className={styles.line} />
-          <div className={styles.menuText}>MENU</div>
+          <div className={styles.hamburger}>
+            <div className={styles.line} />
+          </div>
         </div>
       </button>
       <Layout className={`${styles.navigationBar} ${isMenuVisible ? styles.vertical : styles.hidden}`}>

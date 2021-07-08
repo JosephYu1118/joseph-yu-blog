@@ -4,7 +4,7 @@ import { Disqus } from 'gatsby-plugin-disqus';
 const Comment = ({ pageId, title }) => (
   <Disqus
     config={{
-      url: `http://localhost:8000/${pageId}`,
+      url: `https://joseph-yu-blog.netlify.app/${pageId}`,
       identifier: pageId,
       title,
     }}

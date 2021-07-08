@@ -13,6 +13,7 @@
     align-self: flex-end;
   }
   .image {
+    max-width: 40rem;
     width: 90%;
     margin-bottom: 2rem;
     border-radius: 1.5rem;
@@ -21,24 +22,65 @@
   article {
     padding: 0 0 5rem 0;
     line-height: 1.7;
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 700;
+    h1, h2, h3, h4 {
       margin: 1.5rem 0 1rem 0;
+      font-weight: 700;
     }
     h1 {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
     }
     h2 {
-      font-size: 1.6rem;
+      border-bottom: 0.1rem solid rgba($sonic-silver, 0.1);
+      font-size: 1.5rem;
     }
     h3 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
     h4 {
-      font-size: 1.2rem;
+      font-size: 1rem;
+      font-weight: 900;
+    }
+    h5 {
+      margin: 3rem 0 1rem 0;
+      font-size: 1rem;
+      font-weight: 700;
     }
     p {
       font-size: 1rem;
+    }
+    li {
+      margin: 0.5rem 0 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    ul {
+      margin-left: 1rem;
+      li {
+        list-style-type: disc;
+      }
+    }
+    ol {
+      margin-left: 1.5rem;
+      li {
+        list-style-type: decimal;
+      }
+    }
+    a {
+      border-bottom: 0.1rem solid $air-superiority-blue;
+      font-weight: 700;
+      color: $air-superiority-blue;
+      &:hover {
+        color: $ming;
+      }
+    }
+    img {
+      max-width: 40rem;
+      width: 100%;
+    }
+    blockquote {
+      margin: 1rem;
+      padding-left: 1rem;
+      border-left: 0.3rem solid rgba($sonic-silver, 0.1);
+      color: $sonic-silver;
     }
   }
 }

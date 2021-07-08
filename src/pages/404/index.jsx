@@ -9,17 +9,6 @@ const seoConfig = {
   path: '404',
   title: '404',
   description: '很抱歉，您尋找的頁面不存在！',
-  keywords: [
-    '俞敬聲',
-    'Joseph',
-    'Yu',
-    'front-end',
-    'developer',
-    'JavaScript',
-    'React',
-    'Vue',
-    'Gatsby',
-  ],
 };
 
 const Page404 = ({ location, data }) => (

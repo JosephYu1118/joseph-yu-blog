@@ -23,6 +23,7 @@
       font-size: 2rem;
       font-weight: 700;
       color: $yale-blue;
+      user-select: text;
     }
     .badge {
       padding: 0.5rem 1rem;
@@ -60,19 +61,20 @@
         margin: 0.25rem 0;
         font-family: 'Titillium Web';
         font-size: 1rem;
-        font-weight: 200;
         color: $air-superiority-blue;
         @include flex-center;
         justify-content: flex-start;
+        p {
+          user-select: text;
+          &.chinese {
+            font-family: 'Noto Sans TC';
+          }
+        }
         .icon {
           width: 1.5rem;
           height: 1.5rem;
           margin-right: 0.8rem;
           @include flex-center;
-        }
-        .chinese {
-          font-family: 'Noto Sans TC';
-          font-weight: 400;
         }
       }
     }

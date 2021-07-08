@@ -8,17 +8,6 @@ const seoConfig = {
   path: 'contact',
   title: 'Contact',
   description: '若有任何建議或問題，歡迎在這裡告訴我！',
-  keywords: [
-    '俞敬聲',
-    'Joseph',
-    'Yu',
-    'front-end',
-    'developer',
-    'JavaScript',
-    'React',
-    'Vue',
-    'Gatsby',
-  ],
 };
 
 const Contact = ({ location }) => (

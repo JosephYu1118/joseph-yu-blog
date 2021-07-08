@@ -20,34 +20,47 @@
     .container {
       cursor: pointer;
       &.active {
-        .line {
-          width: 1.2rem;
-          height: 0.15rem;
-          border-radius: 0.3rem;
-          background-color: $carrot-orange;
-          transition: all 0.2s ease-in-out;
-          &:nth-child(1) {
-            transform: translate3d(0, 0, 0) rotate(45deg);
+        .hamburger {
+          &:before, &:after {
+            top: 0;
+            transition: top 0.3s $hamburger-squash, transform 0.3s 0.3s $hamburger-squash;
           }
-          &:nth-child(2) {
-            transform: translate3d(0, -0.13rem, 0) rotate(-45deg);
+          &:before {
+            transform: rotate(45deg);
           }
-        }
-        .menuText {
-          display: none;
+          &:after {
+            transform: rotate(-45deg);
+          }
+          .line {
+            opacity: 0;
+          }
         }
       }
-      .menuText {
-        width: 100%;
-        font-family: 'Titillium Web';
-        font-size: 0.9rem;
-        font-weight: 900;
-        color: $carrot-orange;
+      .hamburger {
+        @include flex-center;
+        position: relative;
+        &:before, &:after, .line {
+          width: 2rem;
+          height: 0.2rem;
+          background-color: $carrot-orange;
+        }
+        &:before, &:after {
+          content: '';
+          position: absolute;
+          transition: top 0.3s 0.3s $hamburger-squash, transform 0.3s $hamburger-squash;
+        }
+        &:before {
+          top: -0.7rem;
+        }
+        &:after {
+          top: 0.7rem;
+        }
       }
     }
   }
   .navigationBar {
     max-width: 1264px;
+    background-color: transparent;
     @include flex-center;
     align-items: flex-end;
     &.vertical {

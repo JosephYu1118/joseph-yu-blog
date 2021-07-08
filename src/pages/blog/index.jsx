@@ -21,7 +21,6 @@ const Blog = ({ location, data }) => {
         path,
         title,
         tags,
-        cover: { childImageSharp: { gatsbyImageData } },
         date,
         excerpt,
       } = frontmatter;
@@ -30,7 +29,6 @@ const Blog = ({ location, data }) => {
         path,
         title,
         tagList: tags,
-        image: gatsbyImageData,
         date: date.split('T')[0].replaceAll('-', ' / '),
         excerpt,
       };
@@ -47,7 +45,6 @@ const Blog = ({ location, data }) => {
           path,
           title,
           tagList,
-          image,
           date,
           excerpt,
         }) => (
@@ -56,7 +53,6 @@ const Blog = ({ location, data }) => {
               path={path}
               title={title}
               tagList={tagList}
-              image={image}
               date={date}
               excerpt={excerpt}
             />
@@ -82,11 +78,6 @@ export const query = graphql`
           path
           title
           tags
-          cover {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
           date
           excerpt
         }
