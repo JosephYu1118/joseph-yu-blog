@@ -1,7 +1,7 @@
 module.exports = {
   author: 'Joseph Yu',
   pathPrefix: '/joseph-yu-blog',
-  siteUrl: 'http://localhost:8000',
+  siteUrl: 'https://joseph-yu-blog.netlify.app/',
   siteTitle: 'Joseph Yu Blog',
   siteDescription: 'Logbook of a front-end developer',
   contact: {
